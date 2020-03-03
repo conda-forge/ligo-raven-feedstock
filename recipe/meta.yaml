@@ -6,11 +6,11 @@ package:
   version: "{{ version }}"
 
 source:
-  url: https://git.ligo.org/lscsoft/raven/-/archive/v{{ version }}/raven-v{{ version }}.tar.gz
-  sha256: 86273e432a61c217528dc199f0158f34a83647961cbb1493fc9a876f7280a49c
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: a4249009c141bf521781ff6df3d2428ce316792a3783b8227c13d5edbda0aec0
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win or py<35]
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv "
 
