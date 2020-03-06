@@ -1,5 +1,5 @@
 {% set name = "ligo-raven" %}
-{% set version = "1.17" %}
+{% set version = "1.18" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,21 +7,20 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: a4249009c141bf521781ff6df3d2428ce316792a3783b8227c13d5edbda0aec0
+  sha256: 2336a0e95b132f63443712a0d1fbab2810bff21f2f36398d2b4168a5b2293900
 
 build:
-  number: 1
-  skip: true  # [win or py<35]
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv "
+  number: 0
+  skip: true  # [win or py<36]
+  script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
+    - pip
     - pytest-runner
     - python
-    - pip
     - setuptools
   run:
-    - python
     - h5py
     - healpy !=1.12.0
     - ligo-common
@@ -31,6 +30,7 @@ requirements:
     - lscsoft-glue
     - lxml
     - numpy >=1.14.5
+    - python
     - python-lal
     - scipy >=0.7.2
     - voeventlib >=1.2
