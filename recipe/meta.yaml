@@ -36,15 +36,20 @@ requirements:
     - voeventlib >=1.2
 
 test:
-  imports:
-    - ligo.raven
-    - ligo.raven.gracedb_events
-    - ligo.raven.search
+  requires:
+    - pip
+    - pytest
   commands:
-    - raven_coinc_search_gracedb --help
-    - raven_fetch_external_triggers --help
-    - raven_file_cache_monitor --help
-    - raven_gcn_web_scraper --help
+    # check requirements
+    - python -m pip check
+    # run test suite
+    - python -m pytest -ra --pyargs ligo.tests
+    # sanity check scripts
+    - raven_query --help
+    - raven_search --help
+    - raven_skymap_overlap --help
+    - raven_coinc_far --help
+    - raven_calc_signif_gracedb --help
 
 about:
   home: https://git.ligo.org/lscsoft/raven/
