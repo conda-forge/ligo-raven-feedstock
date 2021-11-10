@@ -11,7 +11,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [win or py<36]
+  skip: true  # [win]
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -21,14 +21,14 @@ requirements:
     - python
     - setuptools
   run:
-    - h5py
+    - astropy
+    - astropy-healpix
+    - gracedb-sdk
     - healpy !=1.12.0
-    - ligo-common
-    - ligo-gracedb >=2.2.0
-    - ligo-segments
     - ligo.skymap >=0.1.1
     - lscsoft-glue
     - lxml
+    - matplotlib-base
     - numpy >=1.14.5
     - python
     - python-lal
