@@ -11,7 +11,15 @@ Summary: Low-latency coincidence search between external triggers and GW candida
 
 Development: https://git.ligo.org/lscsoft/raven/
 
-Low-latency coincidence search between external triggers and GW candidates
+RAVEN is used in the LVK low-latency alert system in order to find associations
+between gravitational waves and other astronomical transients via GraceDb.
+See the following for more details:
+
+- <https://igwn.readthedocs.io/projects/gwcelery/en/latest/gwcelery.tasks.external_triggers.html>
+- <https://igwn.readthedocs.io/projects/gwcelery/en/latest/gwcelery.tasks.raven.html>
+
+RAVEN is also designed to be able to perform these tasks via GraceDb in offline searches
+as well.
 
 
 Current build status
