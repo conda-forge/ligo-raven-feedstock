@@ -1,0 +1,9 @@
+diff --git a/bin/raven_search b/bin/raven_search
+index 5852909..68ce4e8 100644
+--- a/bin/raven_search
++++ b/bin/raven_search
+@@ -1,3 +1,4 @@
++#!/usr/bin/env python
+ #
+ # Project Librarian: Brandon Piotrzkowski
+ #              Graduate Student

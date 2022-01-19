@@ -8,6 +8,11 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: f830ab1163ff4d017d889443903c28c7d6023b391a1c8476b76c56e691c7b01c
+  patches:
+    # https://git.ligo.org/lscsoft/raven/-/merge_requests/68
+    - raven_search-shebang.patch
+    # clean up requirements
+    - requirements.patch
 
 build:
   number: 0
@@ -17,15 +22,12 @@ build:
 requirements:
   host:
     - pip
-    - pytest-runner
     - python
     - setuptools
   run:
     - h5py
     - healpy !=1.12.0
-    - ligo-common
-    - ligo-gracedb >=2.2.0
-    - ligo-segments
+    - gracedb-sdk
     - ligo.skymap >=0.1.1
     - lscsoft-glue
     - lxml
@@ -41,10 +43,11 @@ test:
     - ligo.raven.gracedb_events
     - ligo.raven.search
   commands:
-    - raven_coinc_search_gracedb --help
-    - raven_fetch_external_triggers --help
-    - raven_file_cache_monitor --help
-    - raven_gcn_web_scraper --help
+    - raven_query --help
+    - raven_search --help
+    - raven_skymap_overlap --help
+    - raven_coinc_far --help
+    - raven_calc_signif_gracedb --help
 
 about:
   home: https://git.ligo.org/lscsoft/raven/
