@@ -1,31 +1,33 @@
 {% set name = "ligo-raven" %}
-{% set version = "1.18" %}
+{% set version = "2.1" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 2336a0e95b132f63443712a0d1fbab2810bff21f2f36398d2b4168a5b2293900
+  sha256: f830ab1163ff4d017d889443903c28c7d6023b391a1c8476b76c56e691c7b01c
+  patches:
+    # https://git.ligo.org/lscsoft/raven/-/merge_requests/68
+    - raven_search-shebang.patch
+    # clean up requirements
+    - requirements.patch
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win or py<36]
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - pip
-    - pytest-runner
     - python
     - setuptools
   run:
     - h5py
     - healpy !=1.12.0
-    - ligo-common
-    - ligo-gracedb >=2.2.0
-    - ligo-segments
+    - gracedb-sdk
     - ligo.skymap >=0.1.1
     - lscsoft-glue
     - lxml
@@ -34,6 +36,10 @@ requirements:
     - python-lal
     - scipy >=0.7.2
     - voeventlib >=1.2
+  run_constrained:
+    # the last version of ligo.skymap supported on python 3.7
+    # isn't compatible with python-ligo-lw >=1.8.0
+    - python-ligo-lw <1.8.0  # [py<38]
 
 test:
   imports:
@@ -41,10 +47,11 @@ test:
     - ligo.raven.gracedb_events
     - ligo.raven.search
   commands:
-    - raven_coinc_search_gracedb --help
-    - raven_fetch_external_triggers --help
-    - raven_file_cache_monitor --help
-    - raven_gcn_web_scraper --help
+    - raven_query --help
+    - raven_search --help
+    - raven_skymap_overlap --help
+    - raven_coinc_far --help
+    - raven_calc_signif_gracedb --help
 
 about:
   home: https://git.ligo.org/lscsoft/raven/
