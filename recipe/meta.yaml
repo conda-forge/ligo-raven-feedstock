@@ -1,5 +1,5 @@
 {% set name = "ligo-raven" %}
-{% set version = "2.2" %}
+{% set version = "2.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 8285ae5e1a618412e68c5b8ca05307c47db950d6cb15acbebf633f550f937c75
+  sha256: 0a27a07bf92a8224ade7ece51e5024d21f4b38d505fe0414f6b27a4f3da651c9
   patches:
     # clean up requirements
     - requirements.patch
