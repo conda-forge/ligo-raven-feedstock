@@ -9,7 +9,9 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ligo-raven-feed
 
 Summary: Low-latency coincidence search between external triggers and GW candidates
 
-Development: https://git.ligo.org/lscsoft/raven/
+Development: https://git.ligo.org/lscsoft/raven.git
+
+Documentation: https://lscsoft.docs.ligo.org/raven/
 
 Low-latency coincidence search between external triggers and GW candidates
 
