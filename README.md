@@ -1,11 +1,11 @@
-About ligo-raven
-================
+About ligo-raven-feedstock
+==========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ligo-raven-feedstock/blob/main/LICENSE.txt)
 
 Home: https://git.ligo.org/lscsoft/raven/
 
 Package license: GPL-3.0-or-later
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ligo-raven-feedstock/blob/main/LICENSE.txt)
 
 Summary: Low-latency coincidence search between external triggers and GW candidates
 
