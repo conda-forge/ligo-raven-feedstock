@@ -8,6 +8,9 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 5da733aa93047316863b01bdad8440c5548d30e15b73bdd22d6549e554975e98
+  patches:
+    # clean up requirements
+    - requirements.patch
 
 build:
   number: 2
