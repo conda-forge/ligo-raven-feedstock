@@ -1,0 +1,69 @@
+schema_version: 1
+
+context:
+  name: ligo-raven
+  version: "3.3"
+
+package:
+  name: ligo-raven
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 846943483755d8aa9abbb64ace9732e21ce0f60ac0814110abc39833976837ac
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - astropy-base
+    - astropy-healpix
+    - gracedb-sdk
+    - healpy !=1.12.0
+    - hpmoc >=1.0.0
+    - ligo-gracedb >=2.2.0
+    - ligo.skymap >=0.1.1
+    - matplotlib-base
+    - numpy >=1.14.5
+    - python >=${{ python_min }}
+    - scipy >=0.7.2
+
+tests:
+  - python:
+      imports:
+        - ligo.raven
+        - ligo.raven.gracedb_events
+        - ligo.raven.search
+      pip_check: true
+      python_version: ["${{ python_min }}.*", "3.14.*"]
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - raven_query --help
+      - raven_search --help
+      - raven_skymap_overlap --help
+      - raven_coinc_far --help
+      - raven_calc_signif_gracedb --help
+
+about:
+  summary: Low-latency coincidence search between external triggers and GW candidates
+  description: |
+    Low-latency coincidence search between external triggers and GW candidates
+  homepage: https://git.ligo.org/lscsoft/raven/
+  repository: https://git.ligo.org/lscsoft/raven.git
+  documentation: https://lscsoft.docs.ligo.org/raven/
+  license: GPL-3.0-or-later
+  license_file: COPYING
+
+extra:
+  recipe-maintainers:
+    - bpiotrzkowski
+    - duncanmmacleod
